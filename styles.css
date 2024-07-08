@@ -7,14 +7,14 @@
 
 body {
   color: aliceblue;
-  background-color: rgb(63,24,71);
+  background-color: rgb(63, 24, 71);
 }
 
 #container {
   width: 33%;
   margin-left: auto;
   margin-right: auto;
-  background-color: rgb(154,59,174);
+  background-color: rgb(154, 59, 174);
   text-align: center;
   margin-top: 10vh;
   padding: 20px;
@@ -39,18 +39,19 @@ button {
   cursor: pointer;
   padding: 8px;
   border-radius: 5px;
-  background-color: rgb(63,24,71);
+  background-color: rgb(63, 24, 71);
   color: white;
 }
 
-#change-due, #cash-in-drawer {
+#change-due,
+#cash-in-drawer {
   margin-bottom: 1.5rem;
   font-size: 18px;
 }
 
 @media only screen and (max-width: 500px) {
-  #container {
+    #container {
       width: 90%;
       margin-top: 15vh;
-  }
+    }
 }
