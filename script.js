@@ -18,7 +18,7 @@ let cid = [
 document.getElementById('price').innerHTML = `<b>Price:</b> ${price.toFixed(2)}`;
 
 const displayCashInDrawer = () => {
-  displayCid.innerHTML = `<h4>Cash in Drawer:</h4>${cid.map(cash => `${cash[0]}: $${cash[1].toFixed(2)} <br>`).reverse().join('')}`;
+  displayCid.innerHTML = `<h4>Cash in Drawer:</h4>${cid.map((cash) => `${cash[0]}: $${cash[1].toFixed(2)} <br>`).reverse().join('')}`;
 };
 
 const checkRegister = () => {
@@ -51,7 +51,9 @@ const checkRegister = () => {
   for (let i = 0; i < denominations.length; i += 1) {
     let totalDenom = 0;
     while (change >= denominations[i] && cidCopy[cidCopy.length - 1 - i][1] > 0) {
-      cidCopy[cidCopy.length-1-i][1]=Number((cidCopy[cidCopy.length-1-i][1]- denominations[i]).toFixed(2));
+      cidCopy[cidCopy.length - 1 - i][1] = Number(
+        (cidCopy[cidCopy.length - 1 - i][1] - denominations[i]).toFixed(2)
+      );
       change = Number((change - denominations[i]).toFixed(2));
       totalDenom += denominations[i];
     }
