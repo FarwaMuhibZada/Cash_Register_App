@@ -75,8 +75,7 @@ const checkRegister = () => {
   }
 
   displayCashInDrawer();
-};
-
+}
 
 window.onload = displayCashInDrawer;
 purchaseBtn.addEventListener('click', checkRegister);
