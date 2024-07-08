@@ -18,13 +18,13 @@ let cid = [
 document.getElementById('price').innerHTML = `<b>Price:</b> ${price.toFixed(2)}`;
 
 const displayCashInDrawer = () => {
-  displayCid.innerHTML = '<h4>Cash in Drawer:</h4>' + cid.map(cash => `${cash[0]}: $${cash[1].toFixed(2)} <br>`).reverse().join('');
+  displayCid.innerHTML = `<h4>Cash in Drawer:</h4>${cid.map(cash => `${cash[0]}: $${cash[1].toFixed(2)} <br>`).reverse().join('')}`;
 };
 
 const checkRegister = () => {
-  let cashInt = parseFloat(cashInput.value);
+  const cashInt = parseFloat(cashInput.value);
   let change = Number((cashInt - price).toFixed(2));
-  let totalCid = Number(cid.reduce((total, cash) => total + cash[1], 0).toFixed(2));
+  const totalCid = Number(cid.reduce((total, cash) => total + cash[1], 0).toFixed(2));
 
   document.getElementById('change').innerHTML = `<b>Change:</b> ${change.toFixed(2)}`;
 
@@ -48,10 +48,10 @@ const checkRegister = () => {
   const changeArr = [];
   const cidCopy = [...cid];
 
-  for (let i = 0; i < denominations.length; i++) {
+  for (let i = 0; i < denominations.length; i += 1) {
     let totalDenom = 0;
     while (change >= denominations[i] && cidCopy[cidCopy.length - 1 - i][1] > 0) {
-      cidCopy[cidCopy.length - 1 - i][1] = Number((cidCopy[cidCopy.length - 1 - i][1] - denominations[i]).toFixed(2));
+      cidCopy[cidCopy.length-1-i][1]=Number((cidCopy[cidCopy.length-1-i][1]- denominations[i]).toFixed(2));
       change = Number((change - denominations[i]).toFixed(2));
       totalDenom += denominations[i];
     }
@@ -61,14 +61,14 @@ const checkRegister = () => {
   }
 
   if (change > 0) {
-    displayChangeDue.innerText = `Status: INSUFFICIENT_FUNDS`;
+    displayChangeDue.innerText = 'Status: INSUFFICIENT_FUNDS';
     return;
   }
 
   const remainingCid = cidCopy.reduce((total, cash) => total + cash[1], 0);
 
   if (remainingCid === 0) {
-    displayChangeDue.innerHTML = `Status: CLOSED ${changeArr.map((cash) => `<b>${cash[0]}</b>: $${cash[1].toFixed(2)}`).join(" ")}`;
+    displayChangeDue.innerHTML = `Status: CLOSED ${changeArr.map((cash) => `<b>${cash[0]}</b>: $${cash[1].toFixed(2)}`).join(' ')}`;
     cid = cid.map((denom) => [denom[0], 0]);
   } else {
     displayChangeDue.innerHTML = `Status: <b>OPEN</b> <br><br>${changeArr.map((cash) => `<b>${cash[0]}</b>: $${cash[1].toFixed(2)} <br>`).join(' ')}`;
