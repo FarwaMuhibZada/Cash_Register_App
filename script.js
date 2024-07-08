@@ -15,6 +15,9 @@ let cid = [
   ["ONE HUNDRED", 100],
 ];
 document.getElementById("price").innerHTML = `<b>Price:</b> ${price}`;
+const displayCashInDrawer = () => {
+  displayCid.innerHTML = '<h4>Cash in Drawer:</h4>' + cid.map((cash) => `${cash[0]}: $${cash[1].toFixed(2)} <br>`).reverse().join('');
+};
 const checkRegister = () => {
   let cashInt = parseFloat(cash.value);
   let change = Number((cashInt - price).toFixed(2));
@@ -37,7 +40,7 @@ const checkRegister = () => {
   const denominationNames = ['ONE HUNDRED', 'TWENTY', 'TEN', 'FIVE', 'ONE', 'QUARTER', 'DIME', 'NICKEL', 'PENNY'];
   const changeArr = [];
   const cidCopy = [...cid];
-  for (let i = 0; i < denominations.length; i+=1) {
+  for (let i = 0; i < denominations.length; i += 1) {
     let totalDenom = 0;
     while (change >= denominations[i] && cidCopy[cidCopy.length - 1 - i][1] > 0) {
       cidCopy[cidCopy.length - 1 - i][1] =
@@ -55,16 +58,13 @@ const checkRegister = () => {
   }
   const remainingCid = cidCopy.reduce((total, sum) => total + sum[1], 0);
   if (remainingCid === 0) {
-    displayChangeDue.innerHTML = "Status: CLOSED " + changeArr.map(cash => `${cash[0]}: $${cash[1].toFixed(2)}`).join(" ");
+    displayChangeDue.innerHTML = 'Status: CLOSED ' + changeArr.map((cash) => `${cash[0]}: $${cash[1].toFixed(2)}`).join(" ");
     cid = cid.map(denom => [denom[0], 0]);
   } else {
     displayChangeDue.innerHTML = 'Status: <b>OPEN</b> <br><br>' + changeArr.map(cash => `<b>${cash[0]}</b>: $${cash[1].toFixed(2)} <br>`).join(' ');
     cid = cidCopy;
   }
   displayCashInDrawer();
-}
-const displayCashInDrawer = () => {
-  displayCid.innerHTML = '<h4>Cash in Drawer:</h4>' + cid.map((cash) => `${cash[0]}: $${cash[1].toFixed(2)} <br>`).reverse().join("");
 };
 window.onload = displayCashInDrawer;
 purchaseBtn.addEventListener('click', checkRegister);
