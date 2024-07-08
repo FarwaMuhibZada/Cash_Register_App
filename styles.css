@@ -50,8 +50,8 @@ button {
 }
 
 @media only screen and (max-width: 500px) {
-    #container {
+  #container {
       width: 90%;
       margin-top: 15vh;
-    }
+  }
 }
